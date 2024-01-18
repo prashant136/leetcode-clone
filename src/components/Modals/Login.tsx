@@ -1,18 +1,33 @@
 import React, { useContext, useState } from "react";
 import { AuthContextObj } from "@context/authContext";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "@firebase/firebase";
+import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
+import { app } from "@firebase/firebase";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from 'next/router'
 
 export default function Login() {
+    // const router = useRouter();
     const { loading, open, updateAuthState } = useContext(AuthContextObj);
     const [inputs, setInputs] = useState({ email: "", password: "" });
     // const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
-    // const router = useRouter();
+
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     };
 
-    const handleLogin = async () => {
+    const handleLogin = () => {
+        console.log("handlelogin runs...");
+
+		if (!inputs.email || !inputs.password) {
+			toast.error("Please fill required fields!", {
+				position: "top-center",
+				autoClose: 1000,
+			});
+			return;
+		}
+
+		// router.push('/');
         // if (!inputs.email || !inputs.password) return alert("Please fill all fields");
         // try {
         // 	const newUser = await signInWithEmailAndPassword(inputs.email, inputs.password);
@@ -22,18 +37,21 @@ export default function Login() {
         // 	toast.error(error.message, { position: "top-center", autoClose: 3000, theme: "dark" });
         // }
 
-        // signInWithEmailAndPassword(auth, inputs.email, inputs.password)
-        //     .then((userCredential) => {
-        //         console.log(userCredential);
-                
-        //         // Signed in
-        //         const user = userCredential.user;
-        //         // ...
-        //     })
-        //     .catch((error) => {
-        //         const errorCode = error.code;
-        //         const errorMessage = error.message;
-        //     });
+        const auth = getAuth(app);
+        signInWithEmailAndPassword(auth, inputs.email, inputs.password)
+            .then((userCredential) => {
+                console.log("useCredentail login-", userCredential);
+                // Signed up
+                // const user = userCredential.user;
+				// ...
+				
+            })
+            .catch((error) => {
+                console.log("error", error);
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // ..
+            });
     };
 
     // useEffect(() => {

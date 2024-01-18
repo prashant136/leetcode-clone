@@ -7,11 +7,12 @@ import React, {
     useState
 } from "react";
 
-type AuthType = "login" | "signup" | "forgetPassword" | undefined;
+type AuthType = "login" | "signup" | "forgetPassword";
 
 type AuthContextProps = {
-    open: AuthType;
+    open: AuthType | undefined;
     loading: boolean;
+    token: string| undefined;
 };
 
 type AuthContextProviderProps = {
@@ -20,7 +21,8 @@ type AuthContextProviderProps = {
 
 const initialState: AuthContextProps = {
     open: undefined,
-    loading: false
+    loading: false,
+    token: "drctftyf432cyerut5",
 };
 
 export const AuthContextObj = createContext<AuthContextProps>(initialState);

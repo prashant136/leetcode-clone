@@ -2,6 +2,9 @@ import { useEffect, useState, useContext } from "react";
 import { AuthContextObj } from "@context/authContext";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { app } from "@firebase/firebase";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from 'next/router'
 
 type SignupProps = {};
 
@@ -14,20 +17,8 @@ export default function Signup() {
         password: undefined
     });
 
-    // createUserWithEmailAndPassword(auth, email, password)
-    //     .then((userCredential) => {
-    //         // Signed up
-    //         const user = userCredential.user;
-    //         // ...
-    //     })
-    //     .catch((error) => {
-    //         const errorCode = error.code;
-    //         const errorMessage = error.message;
-    //         // ..
-    //     });
+	// const router = useRouter();
 
-    // const router = useRouter();
-    // const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
     const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     };
@@ -35,8 +26,18 @@ export default function Signup() {
     const handleSignup = () => {
         console.log("handlesignup runs...");
 
-        if (!inputs.email || !inputs.password || !inputs.displayName)
-            return alert("Please fill all fields");
+		if (!inputs.email || !inputs.password || !inputs.displayName) {
+			toast.error("Please fill required fields!", {
+				position: "top-center",
+				autoClose: 1000,
+			});
+			return;
+		}
+
+        toast.success("Successfully Register !", {
+			position: "top-center",
+		});
+		// router.push('/');
         // try {
         // 	toast.loading("Creating your account", { position: "top-center", toastId: "loadingToast" });
         // 	const newUser = await createUserWithEmailAndPassword(inputs.email, inputs.password);
@@ -59,13 +60,15 @@ export default function Signup() {
         // } finally {
         // 	toast.dismiss("loadingToast");
         // }
+
         const auth = getAuth(app);
         createUserWithEmailAndPassword(auth, inputs.email, inputs.password)
             .then((userCredential) => {
                 console.log("useCredentail signup-", userCredential);
                 // Signed up
                 // const user = userCredential.user;
-                // ...
+				// ...
+				
             })
             .catch((error) => {
                 console.log("error", error);
