@@ -1,5 +1,7 @@
 import React, { useContext, useState } from "react";
 import { AuthContextObj } from "@context/authContext";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@firebase/firebase";
 
 export default function Login() {
     const { loading, open, updateAuthState } = useContext(AuthContextObj);
@@ -19,6 +21,19 @@ export default function Login() {
         // } catch (error: any) {
         // 	toast.error(error.message, { position: "top-center", autoClose: 3000, theme: "dark" });
         // }
+
+        // signInWithEmailAndPassword(auth, inputs.email, inputs.password)
+        //     .then((userCredential) => {
+        //         console.log(userCredential);
+                
+        //         // Signed in
+        //         const user = userCredential.user;
+        //         // ...
+        //     })
+        //     .catch((error) => {
+        //         const errorCode = error.code;
+        //         const errorMessage = error.message;
+        //     });
     };
 
     // useEffect(() => {
