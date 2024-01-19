@@ -5,7 +5,7 @@ import { AuthContextProvider } from "@context/authContext";
 
 export default function Home() {
     return (
-        <div className='bg-[#1a1a1a] min-h-screen flex justify-center'>
+        <div className='min-h-screen flex justify-center bg-[#1a1a1a]'>
             <AuthContextProvider>
                 <Wrapper />
             </AuthContextProvider>

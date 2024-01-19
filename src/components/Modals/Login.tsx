@@ -4,10 +4,10 @@ import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
 import { app } from "@firebase/firebase";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 
 export default function Login() {
-    // const router = useRouter();
+    const router = useRouter();
     const { loading, open, updateAuthState } = useContext(AuthContextObj);
     const [inputs, setInputs] = useState({ email: "", password: "" });
     // const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
@@ -27,7 +27,7 @@ export default function Login() {
 			return;
 		}
 
-		// router.push('/');
+		router.push('/home');
         // if (!inputs.email || !inputs.password) return alert("Please fill all fields");
         // try {
         // 	const newUser = await signInWithEmailAndPassword(inputs.email, inputs.password);
@@ -37,21 +37,22 @@ export default function Login() {
         // 	toast.error(error.message, { position: "top-center", autoClose: 3000, theme: "dark" });
         // }
 
-        const auth = getAuth(app);
-        signInWithEmailAndPassword(auth, inputs.email, inputs.password)
-            .then((userCredential) => {
-                console.log("useCredentail login-", userCredential);
-                // Signed up
-                // const user = userCredential.user;
-				// ...
+        // !-------------------------------------------
+        // const auth = getAuth(app);
+        // signInWithEmailAndPassword(auth, inputs.email, inputs.password)
+        //     .then((userCredential) => {
+        //         console.log("useCredentail login-", userCredential);
+        //         // Signed up
+        //         // const user = userCredential.user;
+		// 		// ...
 				
-            })
-            .catch((error) => {
-                console.log("error", error);
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                // ..
-            });
+        //     })
+        //     .catch((error) => {
+        //         console.log("error", error);
+        //         const errorCode = error.code;
+        //         const errorMessage = error.message;
+        //         // ..
+        //     });
     };
 
     // useEffect(() => {

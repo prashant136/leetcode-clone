@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import ProblemTable from "./ProblemTable";
+import "@styles/global.css";
+import Navbar from "@components/Navbar/Navbar";
 
 export default function Home() {
     const [loadingProblems, setLoadingProblems] = useState(false);
     return (
-        <div>
+        <div className="bg-[#1a1a1a] h-screen">
+            <Navbar />
             <div className='relative overflow-x-auto mx-auto px-6 pb-10'>
                 {/* {loadingProblems && (
 						<div className='max-w-[1200px] mx-auto sm:w-7/12 w-full animate-pulse'>
