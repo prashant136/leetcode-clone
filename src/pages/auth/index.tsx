@@ -4,6 +4,7 @@ import Login from "@components/Modals/Login";
 import Signup from "@components/Modals/Signup";
 import ResetPassword from "@components/Modals/ResetPassword";
 import { AuthContextObj } from "@context/authContext";
+import "@styles/global.css";
 
 type AuthProps = {};
 

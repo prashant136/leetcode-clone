@@ -22,7 +22,8 @@ type AuthContextProviderProps = {
 const initialState: AuthContextProps = {
     open: undefined,
     loading: false,
-    token: "drctftyf432cyerut5",
+    // token: "drctftyf432cyerut5",
+    token: undefined,
 };
 
 export const AuthContextObj = createContext<AuthContextProps>(initialState);
