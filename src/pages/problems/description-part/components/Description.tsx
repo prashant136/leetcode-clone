@@ -4,7 +4,7 @@ import { FaPen } from "react-icons/fa6";
 
 export default function Description() {
     return (
-        <div className='flex flex-col gap-y-4 p-5 bg-[#262626] text-white h-full overflow-x-scroll'>
+        <div className='flex flex-col gap-y-4 p-5 text-white overflow-x-scroll'>
             {/* ---- problem heading ---- */}
             <span className='font-[600] text-2xl'>1. Two Sum</span>
             <div className='flex items-center gap-x-4 text-[13px]'>
