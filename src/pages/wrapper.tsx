@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import Image from "next/image";
-import Navbar from "@components/Navbar/Navbar";
+import Navbar from "@components/Navbar";
 import AuthPage from "@pages/auth";
 import Home from "./home";
 import faang from "../../public/assets/faang.jpg";

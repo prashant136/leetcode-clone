@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import ProblemTable from "./ProblemTable";
 import "@styles/global.css";
-import Navbar from "@components/Navbar/Navbar";
+import Navbar from "@components/Navbar";
 
 export default function Home() {
     const [loadingProblems, setLoadingProblems] = useState(false);
     return (
-        <div className="bg-[#1a1a1a] h-screen">
+        <div className='bg-[#1a1a1a] h-screen'>
             <Navbar />
             <div className='relative overflow-x-auto mx-auto px-6 pb-10'>
                 {/* {loadingProblems && (
@@ -20,30 +20,20 @@ export default function Home() {
                     {!loadingProblems && (
                         <thead className='uppercase border-b'>
                             <tr>
-                                <th
-                                    className='w-1/6 py-3 font-semibold'
-                                >
+                                <th className='w-1/6 py-3 font-semibold'>
                                     Status
                                 </th>
-                                <th
-                                    className='w-1/4 py-3 font-semibold'
-                                >
+                                <th className='w-1/4 py-3 font-semibold'>
                                     Title
                                 </th>
-                                <th
-                                    className='w-1/5 py-3 font-semibold'
-                                >
+                                <th className='w-1/5 py-3 font-semibold'>
                                     Difficulty
                                 </th>
 
-                                <th
-                                    className='w-1/4 py-3 font-semibold'
-                                >
+                                <th className='w-1/4 py-3 font-semibold'>
                                     Category
                                 </th>
-                                <th
-                                    className='w-1/5 py-3 font-semibold'
-                                >
+                                <th className='w-1/5 py-3 font-semibold'>
                                     Solution
                                 </th>
                             </tr>
