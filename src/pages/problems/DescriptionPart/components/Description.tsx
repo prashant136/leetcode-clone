@@ -12,20 +12,18 @@ export default function Description() {
                     Easy
                 </div>
                 <div className='bg-[#3c3c3c] rounded-2xl px-2 py-1 flex items-center gap-x-1.5'>
-                    {" "}
                     <FaPen /> Topics
                 </div>
                 <div className='bg-[#3c3c3c] rounded-2xl px-2 py-1 flex items-center gap-x-1.5'>
                     <FaBuilding /> Companies
                 </div>
                 <div className='bg-[#3c3c3c] rounded-2xl px-2 py-1 flex items-center gap-x-1.5'>
-                    {" "}
                     <FaRegLightbulb /> Hint
                 </div>
             </div>
 
             {/* ---- problem description (paragraph) ---- */}
-            <div className="my-3 text-[15px]">
+            <div className='my-3 text-[15px]'>
                 Given an array of integers nums and an integer target, return
                 indices of the two numbers such that they add up to target. You
                 may assume that each input would have exactly one solution, and
