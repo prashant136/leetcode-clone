@@ -7,7 +7,7 @@ import Description from "./components/Description";
 import Editorial from "./components/Editorial";
 import Submissions from "./components/Submissions";
 
-export default function WorkspaceLeftSection() {
+export default function DescriptionPart() {
     const [currentIndex, setIndex] = useState(0);
 
     const handleChange = (newIndex: number) => {
