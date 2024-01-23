@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "@components/Navbar";
-import DescriptionPart from "./description-part";
-import Playground from "./playground";
+import DescriptionPart from "./DescriptionPart";
+import Playground from "./Playground";
 import Split from "react-split";
 import "@styles/global.css";
 

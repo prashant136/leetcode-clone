@@ -26,10 +26,6 @@ export default function CodeEditor() {
         return 'Hello, ' + name + '!';
     }
     greet("your name...");
-    function greet(name) {
-        return 'Hello, ' + name + '!';
-    }
-    greet("your name...");
     `;
 
     const handleChange = (editor, data, value) => {
@@ -64,11 +60,11 @@ export default function CodeEditor() {
             />
             {/* ----- Editor footer ------ */}
             <div className='w-full absolute bottom-0 flex justify-end gap-x-3 text-sm px-4'>
-                <button className="flex items-center gap-x-2 rounded-md px-2 py-1 bg-[#3c3c3c] text-white">
+                <button className='flex items-center gap-x-2 rounded-md px-2 py-1 bg-[#3c3c3c] text-white'>
                     <FaPlay /> Run
                 </button>
-                <button className="flex items-center gap-x-2 rounded-md px-2 py-1 text-white bg-[#2ac245]">
-                    <TiCloudStorage className="text-lg" />
+                <button className='flex items-center gap-x-2 rounded-md px-2 py-1 text-white bg-[#2ac245]'>
+                    <TiCloudStorage className='text-lg' />
                     Submit
                 </button>
             </div>
