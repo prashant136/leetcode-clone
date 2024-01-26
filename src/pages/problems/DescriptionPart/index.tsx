@@ -6,8 +6,10 @@ import { IoTimerOutline } from "react-icons/io5";
 import Description from "./components/Description";
 import Editorial from "./components/Editorial";
 import Submissions from "./components/Submissions";
+import { Problem } from "@utils/types/problem";
 
-export default function DescriptionPart() {
+
+export default function DescriptionPart({ problem }: { problem: Problem }) {
     const [currentIndex, setIndex] = useState(0);
 
     const handleChange = (newIndex: number) => {
@@ -40,7 +42,7 @@ export default function DescriptionPart() {
                 </Tab.Heads>
                 <Tab.ContentWrapper>
                     <Tab.Content index={0}>
-                       <Description />
+                        <Description problem={problem} />
                     </Tab.Content>
                     <Tab.Content index={1}>
                         <Editorial />

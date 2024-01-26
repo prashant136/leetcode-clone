@@ -11,10 +11,11 @@ import { TiCloudStorage } from "react-icons/ti";
 import CodeMirror from "@uiw/react-codemirror";
 import { vscodeDark } from "@uiw/codemirror-theme-vscode";
 import { javascript } from "@codemirror/lang-javascript";
+import { Problem } from "@utils/types/problem";
 // import "@uiw/react-codemirror/dist/cjs/style.css";
 // import "@uiw/codemirror-theme-vscode/style.css";
 
-export default function CodeEditor() {
+export default function CodeEditor({ problem }: { problem: Problem }) {
     const options = {
         mode: "javascript", // Set the language mode to JavaScript
         theme: "vscode-dark", // Set the theme (you can change it to other available themes)
@@ -52,7 +53,7 @@ export default function CodeEditor() {
             {/* ----- Editor ------ */}
             <CodeMirror
                 className='w-full h-[calc(100%-40px)] absolute top-10 text-[16px] overflow-y-scroll bg-[#1e1e1e]'
-                value={code}
+                value={problem.starterCode}
                 // options={options}
                 extensions={[javascript()]}
                 theme={vscodeDark}

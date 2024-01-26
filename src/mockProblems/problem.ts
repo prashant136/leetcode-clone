@@ -1,4 +1,4 @@
-export type Problem = {
+export type ProblemTableProps = {
 	id: string;
 	title: string;
 	difficulty: string;
@@ -7,7 +7,7 @@ export type Problem = {
 	videoId?: string;
 };
 
-export const problems: Problem[] = [
+export const problems: ProblemTableProps[] = [
 	{
 		id: "two-sum",
 		title: "Two Sum",
