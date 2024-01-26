@@ -3,6 +3,7 @@ import { problems } from "@mockProblems/problem";
 import { AiFillYoutube } from "react-icons/ai";
 import YouTube from "react-youtube";
 import { IoClose } from "react-icons/io5";
+import Link from "next/link";
 
 type ProblemTableProps = {};
 
@@ -13,9 +14,9 @@ export default function ProblemTable() {
     });
 
     const closeModal = () => {
-		setYoutubePlayer({ isOpen: false, videoId: "" });
+        setYoutubePlayer({ isOpen: false, videoId: "" });
     };
-    
+
     useEffect(() => {
         const handleEsc = (e: KeyboardEvent) => {
             if (e.key === "Escape") closeModal();
@@ -38,9 +39,15 @@ export default function ProblemTable() {
                         >
                             <td className='py-3'>✅</td>
                             <td className='py-3'>
-                                {problem.title.length > 15
-                                    ? problem.title.substring(0, 15) + "..."
-                                    : problem.title}
+                                <Link
+                                    href={problem.link}
+                                    className='hover:text-blue-600 cursor-pointer'
+                                    target='_blank'
+                                >
+                                    {problem.title.length > 15
+                                        ? problem.title.substring(0, 15) + "..."
+                                        : problem.title}
+                                </Link>
                             </td>
                             <td
                                 className={`${

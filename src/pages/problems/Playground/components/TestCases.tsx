@@ -3,8 +3,9 @@ import Tab from "@components/Tabs";
 import BorderedDiv from "@components/BorderedDiv";
 import { BsFillClipboard2CheckFill } from "react-icons/bs";
 import { FiMaximize } from "react-icons/fi";
+import { Problem } from "@mockProblems/problem";
 
-export default function TestCases() {
+export default function TestCases({ problem }: { problem: Problem }) {
     const [currentIndex, setIndex] = useState(0);
 
     const handleChange = (newIndex: number) => {
