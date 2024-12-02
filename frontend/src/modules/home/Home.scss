@@ -1,0 +1,128 @@
+// Base Styles
+.home {
+    padding: 20px;
+
+    .home-nav {
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .problems-table-wrapper {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding-bottom: 40px;
+        overflow-x: auto; // Horizontal scrolling for smaller screens
+    }
+
+    .loading-skeletons {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 20px;
+
+        .loading-skeleton {
+            height: 20px;
+            width: 100%;
+            background: #b4b4b4;
+            border-radius: 4px;
+            animation: pulse 1.5s infinite;
+        }
+    }
+
+    .problems-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+        color: #f0f0f0;
+
+        thead {
+            background-color: #d2d2d2;
+            text-transform: uppercase;
+
+            th {
+                padding: 10px;
+                text-align: left;
+                font-weight: 600;
+                border-bottom: 2px solid #444444;
+            }
+        }
+
+        tbody {
+            tr {
+                border-bottom: 1px solid #444444;
+
+                &:hover {
+                    background-color: #444444;
+                }
+
+                td {
+                    padding: 10px;
+                }
+            }
+        }
+    }
+}
+
+// Responsive Styles
+@media (max-width: 768px) {
+    .home {
+        .home-nav {
+            font-size: 20px;
+        }
+
+        .problems-table-wrapper {
+            padding: 10px;
+        }
+
+        .problems-table {
+            font-size: 12px;
+
+            thead th {
+                padding: 8px;
+            }
+
+            tbody td {
+                padding: 8px;
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .home {
+        .home-nav {
+            font-size: 18px;
+        }
+
+        .problems-table-wrapper {
+            padding: 5px;
+        }
+
+        .problems-table {
+            font-size: 10px;
+
+            thead th {
+                padding: 6px;
+            }
+
+            tbody td {
+                padding: 6px;
+            }
+        }
+    }
+}
+
+// Pulse Animation for Loading Skeleton
+@keyframes pulse {
+    0% {
+        background-color: #e0e0e0;
+    }
+    50% {
+        background-color: #f0f0f0;
+    }
+    100% {
+        background-color: #e0e0e0;
+    }
+}

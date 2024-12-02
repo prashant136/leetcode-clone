@@ -1,7 +1,5 @@
-/* eslint-disable react/no-danger-with-children */
-import BorderedDiv from "@components/BorderedDiv";
-import { Problem } from "@utils/types/problem";
-import React from "react";
+import BorderedDiv from "../../../components/BorderedDiv";
+import { Problem } from "../../../utils/types/problem";
 import { FaRegLightbulb, FaBuilding } from "react-icons/fa";
 import { FaPen } from "react-icons/fa6";
 
