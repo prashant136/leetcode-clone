@@ -1,4 +1,4 @@
-import { Problem } from "../types/problem";
+import { Questions } from "../types/questionType";
 import { jumpGame } from "./jump-game";
 import { reverseLinkedList } from "./reverse-linkedlist";
 import { search2DMatrix } from "./search-2d-matrix";
@@ -6,7 +6,7 @@ import { twoSum } from "./two-sum";
 import { validParentheses } from "./valid-parentheses";
 
 type ProblemMap = {
-    [key: string]: Problem;
+    [key: string]: Questions;
 }
 
 export const problems: ProblemMap = {

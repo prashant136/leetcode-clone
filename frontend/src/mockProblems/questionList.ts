@@ -7,7 +7,7 @@ export type ProblemTableProps = {
 	videoId?: string;
 };
 
-export const problems: ProblemTableProps[] = [
+export const questionList: ProblemTableProps[] = [
 	{
 		id: "two-sum",
 		title: "Two Sum",

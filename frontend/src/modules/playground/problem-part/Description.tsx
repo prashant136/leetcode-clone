@@ -1,64 +1,68 @@
-import BorderedDiv from "../../../components/BorderedDiv";
-import { Problem } from "../../../utils/types/problem";
+import React from "react";
+import { Questions } from "../../../utils/types/questionType";
 import { FaRegLightbulb, FaBuilding } from "react-icons/fa";
 import { FaPen } from "react-icons/fa6";
+import styles from "./Description.module.scss";
 
-export default function Description({ problem }: { problem: Problem }) {
+type DescriptionProps = {
+    findQuestion: Questions;
+};
+
+export default function Description({ findQuestion }: DescriptionProps) {
     return (
-        <div className='flex flex-col gap-y-4 p-5 text-white overflow-x-scroll'>
-            {/* ---- problem heading ---- */}
-            <span className='font-[600] text-2xl'>1. {problem.title}</span>
-            <div className='flex items-center gap-x-4 text-[13px]'>
-                <div className='bg-[#3c3c3c] rounded-2xl px-2 py-1 text-yellow-400'>
-                    Easy
-                </div>
-                <div className='bg-[#3c3c3c] rounded-2xl px-2 py-1 flex items-center gap-x-1.5'>
+        <div className={styles.description}>
+            {/* ---- Problem Heading ---- */}
+            <span className={styles["problem-heading"]}>
+                1. {findQuestion.title}
+            </span>
+
+            {/* ---- Tags ---- */}
+            <div className={styles.tags}>
+                <div className={`${styles.tag} ${styles.difficulty}`}>Easy</div>
+                <div className={styles.tag}>
                     <FaPen /> Topics
                 </div>
-                <div className='bg-[#3c3c3c] rounded-2xl px-2 py-1 flex items-center gap-x-1.5'>
+                <div className={styles.tag}>
                     <FaBuilding /> Companies
                 </div>
-                <div className='bg-[#3c3c3c] rounded-2xl px-2 py-1 flex items-center gap-x-1.5'>
+                <div className={styles.tag}>
                     <FaRegLightbulb /> Hint
                 </div>
             </div>
 
-            {/* ---- problem description (paragraph) ---- */}
-            <div className='my-3 text-[15px]'>
+            {/* ---- Problem Description ---- */}
+            <div className={styles["description-content"]}>
                 <div
+                    className='inner-html'
                     dangerouslySetInnerHTML={{
-                        __html: problem.problemStatement
+                        __html: findQuestion.problemStatement
                     }}
-                >
-                </div>
+                ></div>
             </div>
 
             {/* ---- Examples ---- */}
-            <div className='mt-4'>
-                {problem.examples.map((example, index) => (
-                    <div key={example.id}>
-                        <p className='font-medium text-white '>
-                            Example {index + 1}:{" "}
+            <div className={styles.examples}>
+                {findQuestion.examples.map((example, index) => (
+                    <div className={styles.example} key={example.id}>
+                        <p className={styles["example-title"]}>
+                            Example {index + 1}:
                         </p>
                         {example.img && (
                             <img
                                 src={example.img}
                                 alt={`img-${index}`}
-                                className='mt-3'
+                                className={styles.image}
                             />
                         )}
-                        <div className='example-card'>
+                        <div className={styles["example-card"]}>
                             <pre>
-                                <strong className='text-white'>Input:</strong>{" "}
-                                {example.inputText}
+                                <strong>Input:</strong> {example.inputText}
                                 <br />
-                                <strong className='my-1'>Output: </strong>
+                                <strong>Output: </strong>
                                 {example.outputText} <br />
                                 {example.explanation && (
                                     <>
-                                        <strong className='my-1'>
-                                            Explanation:
-                                        </strong>{" "}
+                                        <strong>Explanation:</strong>{" "}
                                         {example.explanation}
                                     </>
                                 )}
@@ -68,15 +72,13 @@ export default function Description({ problem }: { problem: Problem }) {
                 ))}
             </div>
 
-            {/* Constraints */}
-            <div className='my-8 pb-4'>
-                <div className='text-white text-md font-medium'>
-                    Constraints:
-                </div>
-                <ul className='text-white ml-5 list-disc '>
+            {/* ---- Constraints ---- */}
+            <div className={styles.constraints}>
+                <div className={styles["constraints-title"]}>Constraints:</div>
+                <ul>
                     <div
                         dangerouslySetInnerHTML={{
-                            __html: problem.constraints
+                            __html: findQuestion.constraints
                         }}
                     />
                 </ul>

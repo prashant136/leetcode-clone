@@ -1,16 +1,28 @@
 import Split from "react-split";
 import Ide from "./Ide";
 import Testcases from "./Testcases";
-import { Problem } from "../../../utils/types/problem";
+import { Questions } from "../../../utils/types/questionType";
 
-export default function Playground({ problem }: { problem: Problem }) {
+type CodeEditorProps = {
+    findQuestion: Questions;
+};
+
+export default function CodeEditor({ findQuestion }: CodeEditorProps) {
     return (
         <Split
-            sizes={[60, 40]} // Initial sizes of the splits (percentages)
+            style={{ display: "flex", flexDirection: "column" }}
+            sizes={[50, 50]}
+            minSize={100}
+            expandToMin={false}
+            gutterSize={10}
+            gutterAlign='center'
+            snapOffset={30}
+            dragInterval={1}
             direction='vertical'
+            cursor='col-resize'
         >
-            <Ide problem={problem} />
-            <Testcases problem={problem} />
+            <Ide findQuestion={findQuestion} />
+            <Testcases findQuestion={findQuestion} />
         </Split>
     );
 }

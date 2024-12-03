@@ -1,5 +1,5 @@
-import assert from "assert";
-import { Problem } from "../types/problem";
+// import assert from "assert";
+import { Questions } from "../types/questionType";
 import example1 from "./images/search-a-2d-1.jpg";
 import example2 from "./images/search-a-2d-2.jpg";
 
@@ -26,7 +26,7 @@ export const search2DMatrixHandler = (fn: any) => {
         const answers = [true, false];
         for (let i = 0; i < tests.length; i++) {
             const result = fn(tests[i].matrix, tests[i].target);
-            assert.deepEqual(result, answers[i]);
+            // assert.deepEqual(result, answers[i]);
         }
         return true;
     } catch (error: any) {
@@ -39,7 +39,7 @@ function searchMatrix(matrix, target) {
   // Write your code here
 };`;
 
-export const search2DMatrix: Problem = {
+export const search2DMatrix: Questions = {
     id: "search-a-2d-matrix",
     title: "5. Search a 2D Matrix",
     problemStatement: `

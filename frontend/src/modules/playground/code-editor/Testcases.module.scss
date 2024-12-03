@@ -1,0 +1,89 @@
+.testcases-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .testcase-navbar {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #333;
+        height: 40px;
+        padding: 0 1rem;
+        color: #adadad;
+
+        .navbar-left {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+
+            .icon {
+                color: #2ac245; // Green icon color
+            }
+
+            .title {
+                font-size: 14px;
+            }
+        }
+
+        .navbar-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+
+            .icon {
+                cursor: pointer;
+
+                &:hover {
+                    color: white;
+                }
+            }
+        }
+    }
+
+    .testcase-body {
+        position: absolute;
+        top: 50px; // Adjusted to leave space for the navbar
+        width: 100%;
+
+        .tab-heads {
+            display: flex;
+            gap: 1rem;
+            padding: 0.5rem 1rem;
+            overflow-x: auto;
+
+            .tab-item {
+                font-size: 14px;
+                cursor: pointer;
+                padding: 0.5rem;
+                border-radius: 5px;
+                background-color: transparent;
+                color: #adadad;
+
+                &:hover {
+                    background-color: #444;
+                }
+
+                &.active {
+                    color: white;
+                    background-color: #555;
+                }
+            }
+        }
+
+        .tab-content {
+            padding: 1rem;
+            color: #fff;
+
+            .bordered-content {
+                border: 1px solid red;
+                padding: 1rem;
+                border-radius: 5px;
+            }
+        }
+    }
+}
