@@ -1,11 +1,10 @@
-import React, { useState, useContext, useEffect } from "react";
-import { problems } from "@mockProblems/problem";
+import React, { useState, useEffect } from "react";
+import { questionList } from "../../mockProblems/questionList";
 import { AiFillYoutube } from "react-icons/ai";
 import YouTube from "react-youtube";
 import { IoClose } from "react-icons/io5";
-// import Link from "next/link";
-
-type ProblemTableProps = {};
+import { Link } from "react-router";
+import "./ProblemTable.scss";
 
 export default function ProblemTable() {
     const [youtubePlayer, setYoutubePlayer] = useState({
@@ -29,19 +28,19 @@ export default function ProblemTable() {
     return (
         <>
             <tbody>
-                {problems.map((problem, idx) => {
+                {questionList.map((problem, idx) => {
                     return (
                         <tr
                             key={problem.id}
-                            className={`${
-                                idx % 2 === 1 ? "bg-[#2a2a2a]" : ""
-                            } text-white`}
+                            className={`problem-row ${
+                                idx % 2 === 1 ? "alternate-row" : ""
+                            }`}
                         >
-                            <td className='py-3'>✅</td>
-                            <td className='py-3'>
+                            <td>✅</td>
+                            <td>
                                 <Link
-                                    href={problem.link}
-                                    className='hover:text-blue-600 cursor-pointer'
+                                    to={{ pathname: `problem/${problem.id}` }}
+                                    className='problem-link'
                                     target='_blank'
                                 >
                                     {problem.title.length > 15
@@ -50,22 +49,22 @@ export default function ProblemTable() {
                                 </Link>
                             </td>
                             <td
-                                className={`${
+                                className={`difficulty ${
                                     problem.difficulty === "Easy"
-                                        ? "text-[#00b8a3]"
+                                        ? "easy"
                                         : problem.difficulty === "Medium"
-                                        ? "text-[#ffc11d]"
-                                        : "text-[#ff375f]"
-                                } py-3`}
+                                        ? "medium"
+                                        : "hard"
+                                }`}
                             >
                                 {problem.difficulty}
                             </td>
-                            <td className='py-3'>{problem.category}</td>
-                            <td className='py-3'>
+                            <td>{problem.category}</td>
+                            <td>
                                 {problem.videoId ? (
                                     <AiFillYoutube
                                         fontSize={"28"}
-                                        className='cursor-pointer text-red-600'
+                                        className='youtube-icon'
                                         onClick={() =>
                                             setYoutubePlayer({
                                                 isOpen: true,
@@ -75,7 +74,7 @@ export default function ProblemTable() {
                                         }
                                     />
                                 ) : (
-                                    <p className='text-gray-400'>Coming soon</p>
+                                    <p className='coming-soon'>Coming soon</p>
                                 )}
                             </td>
                         </tr>
@@ -83,28 +82,23 @@ export default function ProblemTable() {
                 })}
             </tbody>
             {youtubePlayer.isOpen && (
-                <tfoot className='fixed top-0 left-0 h-screen w-screen flex items-center justify-center'>
+                <div className='modal-overlay' onClick={closeModal}>
                     <div
-                        className='bg-black z-10 opacity-70 top-0 left-0 w-screen h-screen absolute'
-                        onClick={closeModal}
-                    ></div>
-                    <div className='w-full z-50 h-full px-6 relative max-w-4xl'>
-                        <div className='w-full h-full flex items-center justify-center relative'>
-                            <div className='w-full relative'>
-                                <IoClose
-                                    fontSize={"35"}
-                                    className='cursor-pointer absolute -top-16 right-0'
-                                    onClick={closeModal}
-                                />
-                                <YouTube
-                                    videoId={youtubePlayer.videoId}
-                                    loading='lazy'
-                                    iframeClassName='w-full min-h-[500px]'
-                                />
-                            </div>
-                        </div>
+                        className='modal-content'
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <IoClose
+                            fontSize={"35"}
+                            className='close-icon'
+                            onClick={closeModal}
+                        />
+                        <YouTube
+                            videoId={youtubePlayer.videoId}
+                            loading='lazy'
+                            iframeClassName='youtube-frame'
+                        />
                     </div>
-                </tfoot>
+                </div>
             )}
         </>
     );

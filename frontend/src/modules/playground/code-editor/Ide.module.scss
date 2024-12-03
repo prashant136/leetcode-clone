@@ -1,0 +1,93 @@
+.code-editor-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #1e1e1e;
+    border-radius: 5px;
+    overflow: hidden;
+    font-family: "Fira Code", monospace;
+
+    .editor-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #333;
+        color: #adadad;
+        padding: 0.5rem 1rem;
+
+        .editor-title {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+
+            .icon {
+                color: #2ac245; // Green icon
+            }
+
+            .language {
+                font-size: 0.875rem;
+            }
+        }
+
+        .editor-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+
+            .icon {
+                cursor: pointer;
+
+                &:hover {
+                    color: white;
+                }
+            }
+        }
+    }
+
+    .code-mirror-wrapper {
+        height: 100%;
+        .cm-editor {
+            font-size: 14px;
+            background-color: #1e1e1e;
+
+            &.cm-focused {
+                outline: none;
+            }
+        }
+    }
+
+    .editor-footer {
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.5rem;
+        background-color: #333;
+        padding: 0.5rem 1rem;
+
+        button {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: none;
+            border-radius: 5px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+
+            &.run-btn {
+                background-color: #3c3c3c;
+                color: white;
+
+                &:hover {
+                    background-color: #555;
+                }
+            }
+
+            &.submit-btn {
+                background-color: #2ac245;
+                color: white;
+
+                &:hover {
+                    background-color: #249934;
+                }
+            }
+        }
+    }
+}

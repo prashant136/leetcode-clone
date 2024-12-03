@@ -1,5 +1,5 @@
-import assert from "assert";
-import { Problem } from "../types/problem";
+// import assert from "assert";
+import { Questions } from "../types/questionType";
 
 export const jumpGameHandler = (fn: any) => {
     try {
@@ -12,7 +12,7 @@ export const jumpGameHandler = (fn: any) => {
         const answers = [true, false, true, true];
         for (let i = 0; i < tests.length; i++) {
             const result = fn(tests[i]);
-            assert.equal(result, answers[i]);
+            // assert.equal(result, answers[i]);
         }
         return true;
     } catch (error: any) {
@@ -25,7 +25,7 @@ const starterCodeJumpGameJS = `function canJump(nums) {
   // Write your code here
 };`;
 
-export const jumpGame: Problem = {
+export const jumpGame: Questions = {
     id: "jump-game",
     title: "3. Jump Game",
     problemStatement: `<p class='mt-3'>

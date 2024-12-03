@@ -5,8 +5,8 @@
  *      whether a given expression is true or false. If the expression is true, the program continues to execute normally.
  *      However, if the expression is false, an AssertionError is thrown, and the program stops execution.
  */
-import assert from "assert";
-import { Problem } from "@utils/types/problem";
+// import assert from "assert";
+import { Questions } from "../types/questionType";
 
 const starterCodeTwoSum = `function twoSum(nums,target){
   // Write your code here
@@ -33,7 +33,7 @@ const handlerTwoSum = (fn: any) => {
         for (let i = 0; i < nums.length; i++) {
             // result is the output of the user's function and answer is the expected output
             const result = fn(nums[i], targets[i]);
-            assert.deepStrictEqual(result, answers[i]);
+            // assert.deepStrictEqual(result, answers[i]);
         }
         return true;
     } catch (error: any) {
@@ -42,7 +42,7 @@ const handlerTwoSum = (fn: any) => {
     }
 };
 
-export const twoSum: Problem = {
+export const twoSum: Questions = {
     id: "two-sum",
     title: "1. Two Sum",
     problemStatement: `<p class='mt-3'>

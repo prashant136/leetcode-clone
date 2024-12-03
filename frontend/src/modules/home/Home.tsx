@@ -1,44 +1,46 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ProblemTable from "./ProblemTable";
-import "@styles/global.css";
+import "./Home.scss";
 
 export default function Home() {
-    const [loadingProblems, setLoadingProblems] = useState(false);
-    return (
-        <div className='bg-[#1a1a1a] h-screen'>
-            {/* <Navbar /> */}
-            <div className='relative overflow-x-auto mx-auto px-6 pb-10'>
-                {/* {loadingProblems && (
-						<div className='max-w-[1200px] mx-auto sm:w-7/12 w-full animate-pulse'>
-							{[...Array(10)].map((_, idx) => (
-								<LoadingSkeleton key={idx} />
-							))}
-						</div>
-					)} */}
-                <table className='text-sm text-left text-gray-500 sm:w-3/4 w-full max-w-[1200px] mx-auto'>
-                    {!loadingProblems && (
-                        <thead className='uppercase border-b'>
-                            <tr>
-                                <th className='w-1/6 py-3 font-semibold'>
-                                    Status
-                                </th>
-                                <th className='w-1/4 py-3 font-semibold'>
-                                    Title
-                                </th>
-                                <th className='w-1/5 py-3 font-semibold'>
-                                    Difficulty
-                                </th>
+    const [loadingProblems, setLoadingProblems] = useState(true);
 
-                                <th className='w-1/4 py-3 font-semibold'>
-                                    Category
-                                </th>
-                                <th className='w-1/5 py-3 font-semibold'>
-                                    Solution
-                                </th>
-                            </tr>
-                        </thead>
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setLoadingProblems(false);
+        }, 3000);
+
+        return () => {
+            clearTimeout(timer);
+        };
+    }, []);
+
+    return (
+        <div className='home'>
+            <div className='home-nav'>Leetcode</div>
+            <div className='problems-table-wrapper'>
+                {loadingProblems && (
+                    <div className='loading-skeletons'>
+                        {[...Array(10)].map((_, idx) => (
+                            <div className='loading-skeleton' key={idx} />
+                        ))}
+                    </div>
+                )}
+                <table className='problems-table'>
+                    {!loadingProblems && (
+                        <>
+                            <thead>
+                                <tr>
+                                    <th>Status</th>
+                                    <th>Title</th>
+                                    <th>Difficulty</th>
+                                    <th>Category</th>
+                                    <th>Solution</th>
+                                </tr>
+                            </thead>
+                            <ProblemTable />
+                        </>
                     )}
-                    <ProblemTable />
                 </table>
             </div>
         </div>

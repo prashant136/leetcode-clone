@@ -1,28 +1,30 @@
-import React, { useContext, useEffect } from "react";
-import AuthModule from "./modules/auth";
+import React from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./modules/home";
-import { AuthContextObj } from "./context/authContext";
+import Playground from "./modules/playground";
+// import Login from "./components/Login";
 
-export default function App() {
-    // const router = useRouter();
-    const { loading, open, token } = useContext(AuthContextObj);
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <Home />
+    },
+    {
+        path: "/problem/:problemName",
+        element: <Playground />
+    },
+    {
+        path: "/login",
+        element: <>Login</>
+    }
+]);
 
-    // useEffect(() => {
-    //     if (token) {
-    //         router.push("/home");
-    //     } else {
-    //         router.push("/");
-    //     }
-    // }, []);
-
+function App() {
     return (
-        <>
-            <div className='w-screen h-screen'>
-                {/* if user is autheticated then show problemlist page else redirect to login */}
-                <Home />
-                {/* <AuthModule /> */}  
-            </div>
-            {/* {open && <AuthPage />} */}
-        </>
+        <div style={{ height: "100vh", width: "100vw" }}>
+            <RouterProvider router={router} />;
+        </div>
     );
 }
+
+export default App;

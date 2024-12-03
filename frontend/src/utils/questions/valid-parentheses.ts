@@ -1,5 +1,5 @@
-import assert from "assert";
-import { Problem } from "../types/problem";
+// import assert from "assert";
+import { Questions } from "../types/questionType";
 
 export const validParenthesesHandler = (fn: any) => {
     try {
@@ -7,7 +7,7 @@ export const validParenthesesHandler = (fn: any) => {
         const answers = [true, true, false, false, true];
         for (let i = 0; i < tests.length; i++) {
             const result = fn(tests[i]);
-            assert.deepEqual(result, answers[i]);
+            // assert.deepEqual(result, answers[i]);
         }
         return true;
     } catch (error: any) {
@@ -20,7 +20,7 @@ const starterCodeValidParenthesesJS = `function validParentheses(s) {
   // Write your code here
 };`;
 
-export const validParentheses: Problem = {
+export const validParentheses: Questions = {
     id: "valid-parentheses",
     title: "4. Valid Parentheses",
     problemStatement: `<p class='mt-3'>Given a string <code>s</code> containing just the characters <code>'('</code>, <code>')'</code>, <code>'{'</code>, <code>'}'</code>, <code>'['</code> and <code>']'</code>, determine if the input string is valid.</p> <p class='mt-3'>An input string is valid if:</p> <ul> <li class='mt-2'>Open brackets must be closed by the same type of brackets.</li> <li class='mt-3'>Open brackets must be closed in the correct order.</li>

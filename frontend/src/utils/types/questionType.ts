@@ -7,7 +7,7 @@ export type Example = {
 };
 
 // local problem data
-export type Problem = {
+export type Questions = {
 	id: string;
 	title: string;
 	problemStatement: string;

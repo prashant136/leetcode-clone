@@ -1,0 +1,119 @@
+.description {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.25rem;
+    color: white;
+    overflow-x: auto;
+
+    .problem-heading {
+        font-weight: 600;
+        font-size: 2rem;
+    }
+
+    .tags {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        font-size: 0.8125rem;
+
+        .tag {
+            background-color: #3c3c3c;
+            border-radius: 1rem;
+            padding: 0.25rem 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+
+            &.difficulty {
+                color: #facc15; // Yellow
+            }
+        }
+    }
+
+    .description-content {
+        font-size: 0.9375rem;
+        margin-top: 1rem;
+
+        .inner-html {
+            // Optional: Add styles for content from `dangerouslySetInnerHTML`
+        }
+    }
+
+    .examples {
+        margin-top: 1.5rem;
+
+        .example {
+            margin-bottom: 1.5rem;
+
+            .example-title {
+                font-weight: 500;
+                color: white;
+            }
+
+            img {
+                margin-top: 1rem;
+                max-width: 100%;
+                border-radius: 0.5rem;
+            }
+
+            .example-card {
+                background-color: #1e1e1e;
+                border-radius: 0.5rem;
+                padding: 1rem;
+                margin-top: 1rem;
+
+                pre {
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+
+                    strong {
+                        color: white;
+                        display: inline-block;
+                        margin: 0.5rem 0;
+                    }
+                }
+            }
+        }
+    }
+
+    .constraints {
+        margin-top: 2rem;
+        padding-bottom: 1rem;
+
+        .constraints-title {
+            font-size: 1rem;
+            font-weight: 500;
+            color: white;
+        }
+
+        ul {
+            margin-left: 1.25rem;
+            list-style-type: disc;
+
+            li {
+                margin-bottom: 0.5rem;
+            }
+        }
+    }
+
+    // Responsive Design
+    @media (max-width: 768px) {
+        .problem-heading {
+            font-size: 1.5rem;
+        }
+
+        .tags {
+            gap: 0.5rem;
+
+            .tag {
+                font-size: 0.75rem;
+                padding: 0.2rem 0.4rem;
+            }
+        }
+
+        .description-content {
+            font-size: 0.875rem;
+        }
+    }
+}
