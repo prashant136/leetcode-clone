@@ -1,72 +1,64 @@
-const express = require('express');
-const { exec } = require('child_process');
-const fs = require('fs');
-const path = require('path');
+const express = require("express");
+const fs = require("fs").promises;
+const cors = require("cors");
+const {
+    ensureSubmissionsDir,
+    createTempFile,
+    executeCode
+} = require("./utils");
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
-// Example test cases for the Two Sum problem
-const testCases = [
-    { input: '[2,7,11,15], 9', expected: '[0,1]' },
-    { input: '[3,2,4], 6', expected: '[1,2]' },
-    { input: '[3,3], 6', expected: '[0,1]' }
-];
+app.post("/submit", async (req, res) => {
+    const { code, inputs, expected_output, problem_type } = req.body;
+    console.log({code, inputs, expected_output, problem_type});
+    
 
-// Temporary directory for user submissions
-const TEMP_DIR = path.join(__dirname, 'submissions');
-
-// Helper function to create a temporary file
-const createTempFile = (code) => {
-    const filePath = path.join(TEMP_DIR, `submission-${Date.now()}.js`);
-    fs.writeFileSync(filePath, code);
-    return filePath;
-};
-
-// Helper function to execute the submitted code
-const executeCode = (filePath, input) => {
-    return new Promise((resolve, reject) => {
-        exec(`node ${filePath} ${input}`, (error, stdout, stderr) => {
-            if (error) {
-                reject(stderr || error.message);
-            } else {
-                resolve(stdout.trim());
-            }
-        });
-    });
-};
-
-// Endpoint for code submission
-app.post('/submit', async (req, res) => {
-    const { code } = req.body;
-
-    if (!code) {
-        return res.status(400).send({ error: 'Code is required' });
+    if (!code || !inputs || !problem_type || !expected_output) {
+        return res.status(400).send({ error: "Invalid payload structure" });
     }
 
     try {
-        // Create a temporary file with the submitted code
-        const filePath = createTempFile(code);
+        // Ensure submissions directory exists
+        await ensureSubmissionsDir();
 
-        // Run the code against all test cases
-        const results = [];
-        for (const { input, expected } of testCases) {
-            try {
-                const output = await executeCode(filePath, input);
-                const passed = output === expected;
-                results.push({ input, expected, output, passed });
-            } catch (error) {
-                results.push({ input, expected, error, passed: false });
-            }
+        // Create a temporary file for the code
+        const filePath = await createTempFile(
+            code,
+            inputs,
+            problem_type,
+            expected_output
+        );
+
+        // Execute the code and get the output
+        let output;
+        try {
+            output = await executeCode(filePath);
+        } catch (executionError) {
+            console.error("Execution error:", executionError);
+            return res.status(500).send({
+                error: "Code execution failed",
+                details: executionError
+            });
         }
 
-        // Clean up the temporary file
-        fs.unlinkSync(filePath);
+        // Cleanup file after execution
+        // await fs.unlink(filePath);
 
-        // Send back the results
-        return res.send({ results });
+        // Return the output
+        res.send({
+            problem_type,
+            inputs,
+            output: JSON.parse(output)
+        });
     } catch (error) {
-        return res.status(500).send({ error: 'Something went wrong', details: error.message });
+        console.error("Error:", error);
+        return res.status(500).send({
+            error: "Something went wrong",
+            details: error.message
+        });
     }
 });
 

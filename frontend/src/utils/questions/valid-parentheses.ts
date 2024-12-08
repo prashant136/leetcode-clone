@@ -1,20 +1,4 @@
-// import assert from "assert";
 import { Questions } from "../types/questionType";
-
-export const validParenthesesHandler = (fn: any) => {
-    try {
-        const tests = ["()", "()[]{}", "(]", "([)]", "{[]}"];
-        const answers = [true, true, false, false, true];
-        for (let i = 0; i < tests.length; i++) {
-            const result = fn(tests[i]);
-            // assert.deepEqual(result, answers[i]);
-        }
-        return true;
-    } catch (error: any) {
-        console.error("Error from validParenthesesHandler: ", error);
-        throw new Error(error);
-    }
-};
 
 const starterCodeValidParenthesesJS = `function validParentheses(s) {
   // Write your code here
@@ -50,8 +34,6 @@ export const validParentheses: Questions = {
     ],
     constraints: `<li class='mt-2'><code>1 <= s.length <= 10<sup>4</sup></code></li>
 <li class='mt-2 '><code>s</code> consists of parentheses only <code class="text-md">'()[]{}'</code>.</li>`,
-    handlerFunction: validParenthesesHandler,
     starterCode: starterCodeValidParenthesesJS,
-    starterFunctionName: "function validParentheses(",
     order: 4,
 };

@@ -5,12 +5,14 @@ import { BsFillClipboard2CheckFill } from "react-icons/bs";
 import { FiMaximize } from "react-icons/fi";
 import { Questions } from "../../../utils/types/questionType";
 import styles from "./Testcases.module.scss";
+import { usePlaygroundContext } from "../playgroudContext";
 
 type TestcasesProps = {
     findQuestion: Questions;
 };
 
 export default function Testcases({ findQuestion }: TestcasesProps) {
+    const { input, output } = usePlaygroundContext();
     const [currentIndex, setIndex] = useState(0);
 
     const handleChange = (newIndex: number) => {
