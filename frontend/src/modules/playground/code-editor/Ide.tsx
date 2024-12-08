@@ -10,18 +10,44 @@ import { FaPlay } from "react-icons/fa6";
 import { TiCloudStorage } from "react-icons/ti";
 import styles from "./Ide.module.scss";
 import { Questions } from "../../../utils/types/questionType";
+import { inputOutputConfig } from "../../../config/config";
+import { usePlaygroundContext } from "../playgroudContext";
 
 type IdeProps = {
     findQuestion: Questions;
 };
 
 export default function Ide({ findQuestion }: IdeProps) {
-    const [code, setCode] = useState(
-        `function twoSum(nums: number[], target: number): number[] {\n  // Write your code here\n}`
-    );
+    const { input, output } = usePlaygroundContext();
+    const [code, setCode] = useState(findQuestion.starterCode);
 
     const handleCodeChange = (value: string) => {
         setCode(value);
+    };
+
+    console.log("findQuestion", findQuestion);
+    console.log('inputOutputConfig', inputOutputConfig);
+    
+
+    const handleRun = async () => {
+        const payload = {
+            code,
+            inputs: findQuestion.examples.map((x) => x.inputText),
+            expected_output: findQuestion.examples.map((x) => x.outputText),
+            problem_type: findQuestion.id
+        };
+
+        console.log();
+        
+        const res = await fetch("http://localhost:3000/submit", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
+        });
+
+        console.log("res-", res);
     };
 
     return (
@@ -46,13 +72,13 @@ export default function Ide({ findQuestion }: IdeProps) {
                     theme={vscodeDark}
                     extensions={[javascript({ typescript: true })]}
                     onChange={(value) => handleCodeChange(value)}
-                    height='300px'
+                    height='100%'
                 />
             </div>
 
             {/* Editor Footer */}
             <div className={styles["editor-footer"]}>
-                <button className={styles["run-btn"]}>
+                <button className={styles["run-btn"]} onClick={handleRun}>
                     <FaPlay />
                     Run
                 </button>

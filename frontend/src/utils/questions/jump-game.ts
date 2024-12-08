@@ -1,25 +1,4 @@
-// import assert from "assert";
 import { Questions } from "../types/questionType";
-
-export const jumpGameHandler = (fn: any) => {
-    try {
-        const tests = [
-            [2, 3, 1, 1, 4],
-            [3, 2, 1, 0, 4],
-            [2, 0, 0],
-            [2, 5, 0, 0],
-        ];
-        const answers = [true, false, true, true];
-        for (let i = 0; i < tests.length; i++) {
-            const result = fn(tests[i]);
-            // assert.equal(result, answers[i]);
-        }
-        return true;
-    } catch (error: any) {
-        console.log("Error from jumpGameHandler: ", error);
-        throw new Error(error);
-    }
-};
 
 const starterCodeJumpGameJS = `function canJump(nums) {
   // Write your code here
@@ -55,7 +34,5 @@ export const jumpGame: Questions = {
     constraints: `<li class='mt-2'><code>1 <= nums.length <= 10^4</code></li>
     <li class='mt-2'><code>0 <= nums[i] <= 10^5</code></li>`,
     starterCode: starterCodeJumpGameJS,
-    handlerFunction: jumpGameHandler,
-    starterFunctionName: "function canJump(",
     order: 3,
 };
